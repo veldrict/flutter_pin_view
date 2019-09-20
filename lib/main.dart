@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_pin_view/pin/bloc/pin_bloc.dart';
 import 'package:flutter_pin_view/pin/pin_view.dart';
 
 void main() => runApp(MyApp());
@@ -19,7 +21,6 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
 
-
   final String title;
 
   @override
@@ -27,7 +28,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   void _onMaxLength(String pin) {
     print(pin);
   }
@@ -58,18 +58,21 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: PinView(
-        topViewBackgroundColor: Colors.blueAccent,
-        onMaxLength: _onMaxLength,
-        pinLength: 6,
-        textForgotPin: 'Lupa Pin?',
-        onDelete: 'right',
-        rightIcon: Icon(Icons.backspace), //klo ondelete sebelah kiri masukan left icon klo di kanan masukan right icon
-        )
+    return BlocProvider(
+      builder: (context) => PinBloc(),
+      child: Scaffold(
+          appBar: AppBar(
+            title: Text(widget.title),
+          ),
+          body: PinView(
+            topViewBackgroundColor: Colors.blueAccent,
+            onMaxLength: _onMaxLength,
+            pinLength: 6,
+            textForgotPin: 'Lupa Pin?',
+            onDelete: 'right',
+            rightIcon: Icon(Icons
+                .backspace), //klo ondelete sebelah kiri masukan left icon klo di kanan masukan right icon
+          )),
     );
   }
 }
