@@ -1,10 +1,12 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import './pin.dart';
+import 'package:equatable/equatable.dart';
+
+part 'pin_event.dart';
+part 'pin_state.dart';
 
 class PinBloc extends Bloc<PinEvent, PinState> {
-  @override
-  PinState get initialState => InitialPinState();
+  PinBloc() : super(InitialPinState());
 
   @override
   Stream<PinState> mapEventToState(

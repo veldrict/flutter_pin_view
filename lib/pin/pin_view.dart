@@ -8,50 +8,50 @@ enum PinViewEnum {
 }
 
 class PinView extends StatefulWidget {
-  final Color _pinBackgroundColor;
-  final Color _pinTextColor;
-  final Color _dotsColor;
-  final Color _highlightColor;
-  final Color _topViewBackgroundColor;
-  final Color _hintTextColor;
-  final Color _forgotPinTextColor;
-  final Color _borderPinColor;
+  final Color? _pinBackgroundColor;
+  final Color? _pinTextColor;
+  final Color? _dotsColor;
+  final Color? _highlightColor;
+  final Color? _topViewBackgroundColor;
+  final Color? _hintTextColor;
+  final Color? _forgotPinTextColor;
+  final Color? _borderPinColor;
   final String _imgLogo;
   final String _topImageBackground;
-  final String _textForgotPin;
-  final String _hintText;
+  final String? _textForgotPin;
+  final String? _hintText;
   final int _pinLength;
-  final Widget _leftIcon;
-  final Widget _rightIcon;
-  final VoidCallback _leftOnPress;
-  final VoidCallback _rightOnPress;
-  final String _onDelete;
-  final String _onDeleteAll;
+  final Widget? _leftIcon;
+  final Widget? _rightIcon;
+  final VoidCallback? _leftOnPress;
+  final VoidCallback? _rightOnPress;
+  final String? _onDelete;
+  final String? _onDeleteAll;
   final Function(String) _onMaxLength;
 
   // PinView({pinBackgroundColor, pinTextColor, dotsColor}):super();
   PinView({
-    Key key,
-    Color pinBackgroundColor,
-    Color pinTextColor,
-    Color dotsColor,
-    Color highlightColor,
-    Color topViewBackgroundColor,
-    Color hintTextColor,
-    Color forgotPinTextColor,
-    Color borderPinColor,
-    String imgLogo,
-    String topImageBackground,
-    String textForgotPin,
-    String hintText,
-    int pinLength,
-    Widget leftIcon,
-    Widget rightIcon,
-    VoidCallback leftOnPress,
-    VoidCallback rightOnPress,
-    String onDelete,
-    String onDeleteAll,
-    @required Function(String) onMaxLength,
+    Key? key,
+    Color? pinBackgroundColor,
+    Color? pinTextColor,
+    Color? dotsColor,
+    Color? highlightColor,
+    Color? topViewBackgroundColor,
+    Color? hintTextColor,
+    Color? forgotPinTextColor,
+    Color? borderPinColor,
+    String imgLogo = '',
+    String? topImageBackground,
+    String? textForgotPin,
+    String? hintText,
+    int pinLength = 6,
+    Widget? leftIcon,
+    Widget? rightIcon,
+    VoidCallback? leftOnPress,
+    VoidCallback? rightOnPress,
+    String? onDelete,
+    String? onDeleteAll,
+    required Function(String) onMaxLength,
   })  : _pinBackgroundColor = pinBackgroundColor,
         _pinTextColor = pinTextColor,
         _dotsColor = dotsColor,
@@ -60,11 +60,11 @@ class PinView extends StatefulWidget {
         _hintTextColor = hintTextColor,
         _forgotPinTextColor = forgotPinTextColor,
         _borderPinColor = borderPinColor,
-        _imgLogo = imgLogo ?? '',
+        _imgLogo = imgLogo,
         _topImageBackground = topImageBackground ?? '',
         _textForgotPin = textForgotPin ?? '',
         _hintText = hintText,
-        _pinLength = pinLength ?? 6,
+        _pinLength = pinLength,
         _leftIcon = leftIcon,
         _rightIcon = rightIcon,
         _leftOnPress = leftOnPress,
@@ -87,19 +87,19 @@ class _PinViewState extends State<PinView> {
     super.initState();
   }
 
-  Color get _pinBackground => widget._pinBackgroundColor;
-  Color get _pinTextColor => widget._pinTextColor;
+  Color? get _pinBackground => widget._pinBackgroundColor;
+  Color? get _pinTextColor => widget._pinTextColor;
   String get _imgLogo => widget._imgLogo;
   String get _topImageBackground => widget._topImageBackground;
-  String get _textForgotPin => widget._textForgotPin;
-  String get _hintText => widget._hintText;
+  String? get _textForgotPin => widget._textForgotPin;
+  String? get _hintText => widget._hintText;
   int get _pinLength => widget._pinLength;
-  Color get _dotsColor => widget._dotsColor;
-  Color get _highlightColor => widget._highlightColor;
-  Color get _topViewBackgroundColor => widget._topViewBackgroundColor;
-  Widget get _leftIcon => widget._leftIcon;
-  Widget get _rightIcon => widget._rightIcon;
-  VoidCallback _leftOnPress() {
+  Color? get _dotsColor => widget._dotsColor;
+  Color? get _highlightColor => widget._highlightColor;
+  Color? get _topViewBackgroundColor => widget._topViewBackgroundColor;
+  Widget? get _leftIcon => widget._leftIcon;
+  Widget? get _rightIcon => widget._rightIcon;
+  VoidCallback? _leftOnPress() {
     if (widget._onDelete == 'left') {
       _onDelete();
     } else {
@@ -108,7 +108,7 @@ class _PinViewState extends State<PinView> {
     return widget._leftOnPress;
   }
 
-  VoidCallback _rightOnPress() {
+  VoidCallback? _rightOnPress() {
     if (widget._onDelete == 'right') {
       _onDelete();
     } else {
@@ -152,8 +152,7 @@ class _PinViewState extends State<PinView> {
     _pin.clear();
   }
 
-  _onUnderDotsButton() {
-  }
+  _onUnderDotsButton() {}
 
   _onBlankPress(String number) {}
 

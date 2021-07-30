@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 Widget numberView({
-  @required Function(String) onPress,
-  String numberText,
-  Color backgroundColor,
-  Color borderColor,
-  Color textColor,
+  required Function(String) onPress,
+  String? numberText,
+  Color? backgroundColor,
+  Color? borderColor,
+  Color? textColor,
 }) {
   _onPressed() {
-    onPress(numberText);
+    onPress(numberText ?? '');
   }
 
   return Container(
@@ -24,10 +24,10 @@ Widget numberView({
               spreadRadius: 0,
             ),
           ]),
-      child: FlatButton(
+      child: TextButton(
         onPressed: _onPressed,
         child: Text(
-          numberText,
+          numberText ?? '',
           style: TextStyle(
               color: textColor,
               fontFamily: 'Diodrum',
@@ -38,10 +38,10 @@ Widget numberView({
 }
 
 Widget iconView({
-  @required VoidCallback onPress,
-  Widget icon,
-  Color backgroundColor,
-  Color borderColor,
+  required VoidCallback onPress,
+  Widget? icon,
+  Color? backgroundColor,
+  Color? borderColor,
 }) {
   return Container(
       // color: backgroundColor ?? Colors.white,
@@ -56,8 +56,8 @@ Widget iconView({
               spreadRadius: 0,
             ),
           ]),
-      child: FlatButton(
+      child: TextButton(
         onPressed: onPress,
-        child: icon,
+        child: icon ?? Container(),
       ));
 }

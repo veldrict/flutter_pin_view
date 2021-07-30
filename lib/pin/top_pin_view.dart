@@ -3,33 +3,33 @@ import 'package:flutter/material.dart';
 class TopPinView extends StatelessWidget {
   final int pinLength;
   final int currentLength;
-  final Color borderColor;
-  final Color highligthColor;
+  final Color? borderColor;
+  final Color? highligthColor;
   final bool showUnderDots;
   final String textUnderDots;
-  final VoidCallback onPressTextUnderDots;
-  final Color backgroundColor;
+  final VoidCallback? onPressTextUnderDots;
+  final Color? backgroundColor;
   final String imgLogo;
   final double W = 15.0;
   final double H = 15.0;
   final bool showLogo;
   final String hintText;
   final String backgroundImage;
-  final Color hintTextColor;
-  final Color underDotsTextColor;
+  final Color? hintTextColor;
+  final Color? underDotsTextColor;
   TopPinView(
-      {this.pinLength,
-      this.currentLength,
+      {this.pinLength = 6,
+      this.currentLength = 0,
       this.borderColor,
       this.highligthColor,
-      this.showUnderDots,
-      this.textUnderDots,
+      this.showUnderDots = false,
+      this.textUnderDots = '',
       this.onPressTextUnderDots,
       this.backgroundColor,
-      this.imgLogo,
-      this.showLogo,
-      this.hintText,
-      this.backgroundImage,
+      this.imgLogo = '',
+      this.showLogo = false,
+      this.hintText = '',
+      this.backgroundImage = '',
       this.hintTextColor,
       this.underDotsTextColor})
       : assert(currentLength >= 0),
@@ -49,7 +49,8 @@ class TopPinView extends StatelessWidget {
             child: Container(
               decoration: new BoxDecoration(
                 shape: BoxShape.circle,
-                border: new Border.all(color: color, width: 2.0),
+                border:
+                    new Border.all(color: color ?? Colors.black, width: 2.0),
               ),
             ),
           ),
@@ -62,7 +63,8 @@ class TopPinView extends StatelessWidget {
             child: new Container(
               decoration: new BoxDecoration(
                 shape: BoxShape.circle,
-                border: new Border.all(color: color, width: 1.0),
+                border:
+                    new Border.all(color: color ?? Colors.black, width: 1.0),
                 color: highligthColor,
               ),
             ),
@@ -76,7 +78,7 @@ class TopPinView extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                _logo(showLogo ?? false, imgLogo),
+                _logo(showLogo, imgLogo),
                 Container(
                   margin: EdgeInsets.only(top: 20.0),
                 ),
@@ -89,7 +91,7 @@ class TopPinView extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.only(top: 20.0),
                 ),
-                _underDotButton(showUnderDots ?? false, textUnderDots,
+                _underDotButton(showUnderDots, textUnderDots,
                     underDotsTextColor, onPressTextUnderDots),
               ],
             ),
@@ -104,7 +106,7 @@ class TopPinView extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                 _logo(showLogo ?? false, imgLogo),
+                _logo(showLogo, imgLogo),
                 Container(
                   margin: EdgeInsets.only(top: 20.0),
                 ),
@@ -117,7 +119,7 @@ class TopPinView extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.only(top: 20.0),
                 ),
-                _underDotButton(showUnderDots ?? false, textUnderDots,
+                _underDotButton(showUnderDots, textUnderDots,
                     underDotsTextColor, onPressTextUnderDots),
               ],
             ),
@@ -163,10 +165,10 @@ Widget _dot(int pinLength, List<Widget> circles, BuildContext context) {
 }
 
 Widget _underDotButton(bool showUnderDots, String textUnderDots,
-    Color textColor, VoidCallback onPressTextUnderDots) {
+    Color? textColor, VoidCallback? onPressTextUnderDots) {
   if (showUnderDots) {
     return Container(
-      child: FlatButton(
+      child: TextButton(
         child: Text(
           textUnderDots,
           style: TextStyle(color: textColor ?? Colors.black),
