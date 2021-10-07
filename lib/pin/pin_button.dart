@@ -1,63 +1,93 @@
+import 'package:auto_size_text_pk/auto_size_text_pk.dart';
 import 'package:flutter/material.dart';
 
-Widget numberView({
-  required Function(String) onPress,
-  String? numberText,
-  Color? backgroundColor,
-  Color? borderColor,
-  Color? textColor,
-}) {
-  _onPressed() {
-    onPress(numberText ?? '');
-  }
+class NumberView extends StatelessWidget {
+  final Function(String) onPress;
+  final String? numberText;
+  final Color? backgroundColor;
+  final Color? borderColor;
+  final Color? textColor;
+  final double radius;
+  final EdgeInsets? margin;
+  final double fontSize;
+  final FontWeight fontWeight;
 
-  return Container(
-      // color: backgroundColor ?? Colors.white,
-      margin: EdgeInsets.all(1),
-      decoration: BoxDecoration(
-          color: backgroundColor ?? Colors.white,
-          shape: BoxShape.rectangle,
-          boxShadow: [
-            BoxShadow(
-              color: borderColor ?? Colors.black12,
-              blurRadius: 10,
-              spreadRadius: 0,
-            ),
-          ]),
-      child: TextButton(
-        onPressed: _onPressed,
-        child: Text(
-          numberText ?? '',
-          style: TextStyle(
+  const NumberView({
+    Key? key,
+    required this.onPress,
+    this.numberText,
+    this.backgroundColor,
+    this.borderColor,
+    this.textColor,
+    this.radius = 0,
+    this.margin,
+    this.fontSize = 24,
+    this.fontWeight = FontWeight.bold,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        margin: margin,
+        decoration: BoxDecoration(
+            color: backgroundColor ?? Colors.white,
+            borderRadius: BorderRadius.circular(radius),
+            boxShadow: [
+              BoxShadow(
+                color: borderColor ?? Colors.black12,
+                blurRadius: 1,
+                spreadRadius: 0,
+              ),
+            ]),
+        child: TextButton(
+          onPressed: () => onPress(numberText ?? ''),
+          child: AutoSizeText(
+            numberText ?? '',
+            style: TextStyle(
               color: textColor,
-              fontFamily: 'Diodrum',
-              fontSize: 24,
-              fontWeight: FontWeight.bold),
-        ),
-      ));
+              fontSize: fontSize,
+              fontWeight: fontWeight,
+            ),
+          ),
+        ));
+  }
 }
 
-Widget iconView({
-  required VoidCallback onPress,
-  Widget? icon,
-  Color? backgroundColor,
-  Color? borderColor,
-}) {
-  return Container(
-      // color: backgroundColor ?? Colors.white,
-      margin: EdgeInsets.all(1),
-      decoration: BoxDecoration(
-          color: backgroundColor ?? Colors.white,
-          shape: BoxShape.rectangle,
-          boxShadow: [
-            BoxShadow(
-              color: borderColor ?? Colors.black12,
-              blurRadius: 10,
-              spreadRadius: 0,
-            ),
-          ]),
-      child: TextButton(
-        onPressed: onPress,
-        child: icon ?? Container(),
-      ));
+class IconView extends StatelessWidget {
+  final VoidCallback onPress;
+  final Widget? icon;
+  final Color? backgroundColor;
+  final Color? borderColor;
+  final double radius;
+  final EdgeInsets? margin;
+  const IconView(
+      {Key? key,
+      required this.onPress,
+      this.icon,
+      this.backgroundColor,
+      this.borderColor,
+      this.radius = 0,
+      this.margin})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        color: backgroundColor ?? Colors.white,
+        margin: margin,
+        decoration: BoxDecoration(
+            color: backgroundColor ?? Colors.white,
+            borderRadius: BorderRadius.circular(radius),
+            boxShadow: [
+              BoxShadow(
+                color: borderColor ?? Colors.black12,
+                blurRadius: 1,
+                spreadRadius: 0,
+              ),
+            ]),
+        child: TextButton(
+          onPressed: onPress,
+          child: icon ?? Container(),
+        ));
+  }
 }

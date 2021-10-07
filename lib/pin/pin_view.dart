@@ -28,6 +28,7 @@ class PinView extends StatefulWidget {
   final String? _onDelete;
   final String? _onDeleteAll;
   final Function(String) _onMaxLength;
+  final double _buttonRadius;
 
   // PinView({pinBackgroundColor, pinTextColor, dotsColor}):super();
   PinView({
@@ -51,6 +52,7 @@ class PinView extends StatefulWidget {
     VoidCallback? rightOnPress,
     String? onDelete,
     String? onDeleteAll,
+    double? buttonRadius,
     required Function(String) onMaxLength,
   })  : _pinBackgroundColor = pinBackgroundColor,
         _pinTextColor = pinTextColor,
@@ -72,7 +74,7 @@ class PinView extends StatefulWidget {
         _onMaxLength = onMaxLength,
         _onDelete = onDelete,
         _onDeleteAll = onDeleteAll,
-        assert(onMaxLength != null),
+        _buttonRadius = buttonRadius ?? 0,
         super(key: key);
 
   _PinViewState createState() => _PinViewState();
@@ -160,213 +162,187 @@ class _PinViewState extends State<PinView> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Flexible(
-          flex: 1,
-          child: Container(
-            height: MediaQuery.of(context).size.height * 0.5,
-            child: TopPinView(
-              pinLength: _pinLength,
-              borderColor: _dotsColor ?? Colors.white,
-              highligthColor: _highlightColor ?? Colors.white,
-              currentLength: _currentLength,
-              showLogo: _imgLogo != '' ? true : false,
-              imgLogo: _imgLogo,
-              showUnderDots: _textForgotPin != '' ? true : false,
-              textUnderDots: _textForgotPin ?? '',
-              onPressTextUnderDots: _onUnderDotsButton,
-              backgroundColor: _topViewBackgroundColor ?? Colors.white,
-              backgroundImage: _topImageBackground,
-              hintText: _hintText ?? '',
-              hintTextColor: widget._hintTextColor,
-              underDotsTextColor: widget._forgotPinTextColor,
-            ),
+        Expanded(
+          flex: 2,
+          child: TopPinView(
+            pinLength: _pinLength,
+            borderColor: _dotsColor ?? Colors.white,
+            highligthColor: _highlightColor ?? Colors.white,
+            currentLength: _currentLength,
+            showLogo: _imgLogo != '' ? true : false,
+            imgLogo: _imgLogo,
+            showUnderDots: _textForgotPin != '' ? true : false,
+            textUnderDots: _textForgotPin ?? '',
+            onPressTextUnderDots: _onUnderDotsButton,
+            backgroundColor: _topViewBackgroundColor ?? Colors.white,
+            backgroundImage: _topImageBackground,
+            hintText: _hintText ?? '',
+            hintTextColor: widget._hintTextColor,
+            underDotsTextColor: widget._forgotPinTextColor,
           ),
         ),
-        Flexible(
-          flex: 1,
-          child: Container(
-            height: MediaQuery.of(context).size.height * 0.5,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Flexible(
-                  flex: 1,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: <Widget>[
-                      Flexible(
-                        flex: 1,
-                        fit: FlexFit.tight,
-                        child: numberView(
-                          onPress: _onNumberPress,
-                          numberText: '1',
-                          backgroundColor: _pinBackground,
-                          textColor: _pinTextColor,
-                          borderColor: widget._borderPinColor,
-                        ),
+        Expanded(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Expanded(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    Expanded(
+                      child: NumberView(
+                        onPress: _onNumberPress,
+                        numberText: '1',
+                        backgroundColor: _pinBackground,
+                        textColor: _pinTextColor,
+                        borderColor: widget._borderPinColor,
+                        radius: widget._buttonRadius,
                       ),
-                      Flexible(
-                        flex: 1,
-                        fit: FlexFit.tight,
-                        child: numberView(
-                          onPress: _onNumberPress,
-                          numberText: '2',
-                          backgroundColor: _pinBackground,
-                          textColor: _pinTextColor,
-                          borderColor: widget._borderPinColor,
-                        ),
+                    ),
+                    Expanded(
+                      child: NumberView(
+                        onPress: _onNumberPress,
+                        numberText: '2',
+                        backgroundColor: _pinBackground,
+                        textColor: _pinTextColor,
+                        borderColor: widget._borderPinColor,
+                        radius: widget._buttonRadius,
                       ),
-                      Flexible(
-                        flex: 1,
-                        fit: FlexFit.tight,
-                        child: numberView(
-                          onPress: _onNumberPress,
-                          numberText: '3',
-                          backgroundColor: _pinBackground,
-                          textColor: _pinTextColor,
-                          borderColor: widget._borderPinColor,
-                        ),
+                    ),
+                    Expanded(
+                      child: NumberView(
+                        onPress: _onNumberPress,
+                        numberText: '3',
+                        backgroundColor: _pinBackground,
+                        textColor: _pinTextColor,
+                        borderColor: widget._borderPinColor,
+                        radius: widget._buttonRadius,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-                Flexible(
-                  flex: 1,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: <Widget>[
-                      Flexible(
-                        flex: 1,
-                        fit: FlexFit.tight,
-                        child: numberView(
-                          onPress: _onNumberPress,
-                          numberText: '4',
-                          backgroundColor: _pinBackground,
-                          textColor: _pinTextColor,
-                          borderColor: widget._borderPinColor,
-                        ),
+              ),
+              Expanded(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    Expanded(
+                      child: NumberView(
+                        onPress: _onNumberPress,
+                        numberText: '4',
+                        backgroundColor: _pinBackground,
+                        textColor: _pinTextColor,
+                        borderColor: widget._borderPinColor,
+                        radius: widget._buttonRadius,
                       ),
-                      Flexible(
-                        flex: 1,
-                        fit: FlexFit.tight,
-                        child: numberView(
-                          onPress: _onNumberPress,
-                          numberText: '5',
-                          backgroundColor: _pinBackground,
-                          textColor: _pinTextColor,
-                          borderColor: widget._borderPinColor,
-                        ),
+                    ),
+                    Expanded(
+                      child: NumberView(
+                        onPress: _onNumberPress,
+                        numberText: '5',
+                        backgroundColor: _pinBackground,
+                        textColor: _pinTextColor,
+                        borderColor: widget._borderPinColor,
+                        radius: widget._buttonRadius,
                       ),
-                      Flexible(
-                        flex: 1,
-                        fit: FlexFit.tight,
-                        child: numberView(
-                          onPress: _onNumberPress,
-                          numberText: '6',
-                          backgroundColor: _pinBackground,
-                          textColor: _pinTextColor,
-                          borderColor: widget._borderPinColor,
-                        ),
+                    ),
+                    Expanded(
+                      child: NumberView(
+                        onPress: _onNumberPress,
+                        numberText: '6',
+                        backgroundColor: _pinBackground,
+                        textColor: _pinTextColor,
+                        borderColor: widget._borderPinColor,
+                        radius: widget._buttonRadius,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-                Flexible(
-                  flex: 1,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: <Widget>[
-                      Flexible(
-                        flex: 1,
-                        fit: FlexFit.tight,
-                        child: numberView(
-                          onPress: _onNumberPress,
-                          numberText: '7',
-                          backgroundColor: _pinBackground,
-                          textColor: _pinTextColor,
-                          borderColor: widget._borderPinColor,
-                        ),
+              ),
+              Expanded(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    Expanded(
+                      child: NumberView(
+                        onPress: _onNumberPress,
+                        numberText: '7',
+                        backgroundColor: _pinBackground,
+                        textColor: _pinTextColor,
+                        borderColor: widget._borderPinColor,
+                        radius: widget._buttonRadius,
                       ),
-                      Flexible(
-                        flex: 1,
-                        fit: FlexFit.tight,
-                        child: numberView(
-                          onPress: _onNumberPress,
-                          numberText: '8',
-                          backgroundColor: _pinBackground,
-                          textColor: _pinTextColor,
-                          borderColor: widget._borderPinColor,
-                        ),
+                    ),
+                    Expanded(
+                      child: NumberView(
+                        onPress: _onNumberPress,
+                        numberText: '8',
+                        backgroundColor: _pinBackground,
+                        textColor: _pinTextColor,
+                        borderColor: widget._borderPinColor,
+                        radius: widget._buttonRadius,
                       ),
-                      Flexible(
-                        flex: 1,
-                        fit: FlexFit.tight,
-                        child: numberView(
-                          onPress: _onNumberPress,
-                          numberText: '9',
-                          backgroundColor: _pinBackground,
-                          textColor: _pinTextColor,
-                          borderColor: widget._borderPinColor,
-                        ),
+                    ),
+                    Expanded(
+                      child: NumberView(
+                        onPress: _onNumberPress,
+                        numberText: '9',
+                        backgroundColor: _pinBackground,
+                        textColor: _pinTextColor,
+                        borderColor: widget._borderPinColor,
+                        radius: widget._buttonRadius,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-                Flexible(
-                  flex: 1,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: <Widget>[
-                      Flexible(
-                        flex: 1,
-                        fit: FlexFit.tight,
-                        child: _leftIcon != null && _currentLength > 0
-                            ? iconView(
-                                onPress: _leftOnPress,
-                                icon: _leftIcon,
-                                backgroundColor: _pinBackground,
-                                borderColor: widget._borderPinColor,
-                              )
-                            : numberView(
-                                onPress: _onBlankPress,
-                                numberText: '',
-                                backgroundColor: _pinBackground,
-                                borderColor: widget._borderPinColor,
-                              ),
+              ),
+              Expanded(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    Expanded(
+                      child: _leftIcon != null && _currentLength > 0
+                          ? IconView(
+                              onPress: _leftOnPress,
+                              icon: _leftIcon,
+                              backgroundColor: _pinBackground,
+                              borderColor: widget._borderPinColor,
+                            )
+                          : NumberView(
+                              onPress: _onBlankPress,
+                              numberText: '',
+                              backgroundColor: _pinBackground,
+                              borderColor: widget._borderPinColor,
+                            ),
+                    ),
+                    Expanded(
+                      child: NumberView(
+                        onPress: _onNumberPress,
+                        numberText: '0',
+                        backgroundColor: _pinBackground,
+                        textColor: _pinTextColor,
+                        borderColor: widget._borderPinColor,
                       ),
-                      Flexible(
-                        flex: 1,
-                        fit: FlexFit.tight,
-                        child: numberView(
-                          onPress: _onNumberPress,
-                          numberText: '0',
-                          backgroundColor: _pinBackground,
-                          textColor: _pinTextColor,
-                          borderColor: widget._borderPinColor,
-                        ),
-                      ),
-                      Flexible(
-                        flex: 1,
-                        fit: FlexFit.tight,
-                        child: _rightIcon != null && _currentLength > 0
-                            ? iconView(
-                                onPress: _rightOnPress,
-                                icon: _rightIcon,
-                                backgroundColor: _pinBackground,
-                                borderColor: widget._borderPinColor,
-                              )
-                            : numberView(
-                                onPress: _onBlankPress,
-                                numberText: '',
-                                backgroundColor: _pinBackground,
-                                borderColor: widget._borderPinColor,
-                              ),
-                      ),
-                    ],
-                  ),
+                    ),
+                    Expanded(
+                      child: _rightIcon != null && _currentLength > 0
+                          ? IconView(
+                              onPress: _rightOnPress,
+                              icon: _rightIcon,
+                              backgroundColor: _pinBackground,
+                              borderColor: widget._borderPinColor,
+                            )
+                          : NumberView(
+                              onPress: _onBlankPress,
+                              numberText: '',
+                              backgroundColor: _pinBackground,
+                              borderColor: widget._borderPinColor,
+                            ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ],

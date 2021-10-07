@@ -70,8 +70,14 @@ class _MyHomePageState extends State<MyHomePage> {
             pinLength: 6,
             textForgotPin: 'Lupa Pin?',
             onDelete: 'right',
-            rightIcon: Icon(Icons
-                .backspace), //klo ondelete sebelah kiri masukan left icon klo di kanan masukan right icon
+            buttonRadius: 100,
+            borderPinColor: Colors.white,
+            pinBackgroundColor: Colors.blue,
+            pinTextColor: Colors.white,
+            rightIcon: Icon(
+              Icons.backspace,
+              color: Colors.white,
+            ), //klo ondelete sebelah kiri masukan left icon klo di kanan masukan right icon
           )),
     );
   }
